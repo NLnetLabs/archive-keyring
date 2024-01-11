@@ -9,16 +9,17 @@ case $1 in
     echo -e "\nINSTALLED KEYRING SHOULD MATCH ONLINE COPY:"
     curl -fsSL https://packages.nlnetlabs.nl/aptkey.asc | sudo gpg --dearmor | diff -q /usr/share/keyrings/nlnetlabs-archive-keyring.gpg -
 
-    echo -e "\nPACKAGE INSTALL SHOULD FAIL TO AUTHENTICATE WITHOUT SIGNED-BY LINE:"
+    echo -e "\nAPT UPDATE SHOULD FAIL TO AUTHENTICATE WITHOUT SIGNED-BY LINE:"
     echo "deb [arch=$(dpkg --print-architecture)] https://packages.nlnetlabs.nl/linux/${ID} $(lsb_release -cs) main" > /etc/apt/sources.list.d/nlnetlabs.list
-    apt update
-    ! apt-get install --simulate --yes routinator || false
+    ! apt-get update || false
 
-    echo -e "\nPACKAGE INSTALL SHOULD NOW AUTHENTICATE:"
+    echo -e "\nAND AUTHENTICATE WITH SIGNED-BY LINE:"
     . /etc/os-release
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/nlnetlabs-archive-keyring.gpg] https://packages.nlnetlabs.nl/linux/${ID} \
     $(lsb_release -cs) main" > /etc/apt/sources.list.d/nlnetlabs.list
-    apt update
+    apt-get update
+
+    echo -e "\nAND THUS ABLE TO INSTALL ROUTINATOR:"
     apt-get install --simulate --yes routinator
     ;;
   post-upgrade)
