@@ -1,0 +1,23 @@
+[package]
+name = "nlnetlabs-archive-keyring"
+version = "0.1.0"
+edition = "2021"
+authors = ["NLnet Labs <pkg@nlnetlabs.nl>"]
+description = "NLnet Labs package repository signing key for Debian(-derivatives)."
+repository = "https://github.com/NLnetLabs/archive-keyring/"
+license = "BSD-3-Clause"
+exclude = [ ".github" ]
+
+[dependencies]
+
+[package.metadata.deb]
+extended-description = """\
+This package exists to facilitate key rolls for our package signing key. In the \
+event of a roll, it will supply an updated copy of the key(s) that are used to \
+authenticate the packages we supply on our (third party) package repository."""
+depends = ""
+section = "misc"
+priority = "optional"
+assets = [
+    ["nlnetlabs-archive-keyring.gpg", "usr/share/keyrings/nlnetlabs-archive-keyring.gpg", "644"],
+]
