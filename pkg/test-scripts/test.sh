@@ -12,7 +12,7 @@ case $1 in
     echo -e "\nPACKAGE INSTALL SHOULD FAIL TO AUTHENTICATE WITHOUT SIGNED-BY LINE:"
     echo "deb [arch=$(dpkg --print-architecture)] https://packages.nlnetlabs.nl/linux/${ID} $(lsb_release -cs) main" > /etc/apt/sources.list.d/nlnetlabs.list
     apt update
-    ! apt-get install --simulate --yes routinator
+    ! apt-get install --simulate --yes routinator || false
 
     echo -e "\nPACKAGE INSTALL SHOULD NOW AUTHENTICATE:"
     . /etc/os-release
