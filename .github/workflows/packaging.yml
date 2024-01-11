@@ -6,7 +6,7 @@ on:
 
 jobs:
   package:
-    uses: maertsen/ploutos/.github/workflows/pkg-rust.yml@extra-deb-cargo-args
+    uses: nlnetlabs/ploutos/.github/workflows/pkg-rust.yml@v7
     with:
       package_build_rules: |
         image:
