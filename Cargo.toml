@@ -21,3 +21,4 @@ priority = "optional"
 assets = [
     ["nlnetlabs-archive-keyring.gpg", "usr/share/keyrings/nlnetlabs-archive-keyring.gpg", "644"],
 ]
+maintainer-scripts = "pkg/debian"
