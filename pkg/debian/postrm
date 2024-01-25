@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+SOURCE_LIST="/etc/apt/sources.list.d/nlnetlabs.list"
+
+
+case "$1" in
+remove)
+    if [ -d ${SOURCE_LIST} ]; then
+        rm -R ${SOURCE_LIST}
+    fi
+    ;;
+esac
+
+#DEBHELPER#
+
